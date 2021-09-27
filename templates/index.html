@@ -1,13 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{  }}">
-    <title>Task Planner</title>
-</head>
-<body>
-    <h2> Task Planner</h2>
-</body>
-</html>
+{% extends 'base.html'%}
+
+{% block head %}
+    <title>Task Manager</title>
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <h2>Task Planner</h2>
+
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for task in tasks %}
+
+            <tr>
+                <td> {{ task.content }} </td>
+                <td> {{ task.date_created.date() }} </td>
+                <td>
+                    <a href="/delete/{{ task.id }}">Delete</a>
+                    <br>
+                    <a href="/update/{{task.id}}">Update</a>
+                </td>
+            </tr>
+
+            {% endfor %}
+        </table> 
+
+    </div>
+
+    <form action="/home" method="post">
+        <input type="text" name="content" id="content">
+        <input type="submit" value="Add Task">
+    </form>
+{% endblock %}
