@@ -52,7 +52,7 @@ def delete(id):
 
         return redirect('/home')
     except:
-        return 'There was an error deleting your task!' 
+        return 'There was an error deleting your task!!' 
 
 @app.route('/update/<int:id>', methods = ['GET', 'POST'])
 def update(id):
